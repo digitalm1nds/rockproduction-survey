@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-lang="ar">
+<!-- Event Attendee Survey | استبيان الحضور
+     All survey text is in this file: English in class="en", Arabic in class="ar". -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0C0809">
+<title>استبيان الحضور | Event Attendee Survey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/survey.css?v=4">
+<script src="assets/config.js?v=4"></script>
+<script>
+  /* Pick the language before the page draws, so it never flashes the wrong one */
+  (function () {
+    var lang = (window.SURVEY_CONFIG || {}).defaultLanguage || 'ar';
+    try { lang = localStorage.getItem('survey_lang') || lang; } catch (e) {}
+    if (lang !== 'en') lang = 'ar';
+    var h = document.documentElement;
+    h.lang = lang; h.dir = lang === 'ar' ? 'rtl' : 'ltr'; h.setAttribute('data-lang', lang);
+  })();
+</script>
+</head>
+<body>
+
+<p class="setup-note" hidden>Setup needed: answers are not being saved yet. Add your Google Sheet link in <code>assets/config.js</code>.</p>
+
+<header class="hero">
+  <figure class="banner">
+    <!-- Your banner: assets/banner.jpg (wide 3:1 image) -->
+    <img src="assets/banner.jpg" alt="" width="2400" height="800" onerror="this.parentNode.classList.add('banner--empty');this.remove();">
+    <figcaption>Banner<br><small>assets/banner.jpg</small></figcaption>
+  </figure>
+</header>
+
+<main class="shell">
+  <form id="survey" class="card" novalidate>
+
+    <!-- Top bar: progress + language switch -->
+    <div class="card-top">
+      <div class="progress" aria-hidden="true">
+        <span class="progress-label">
+          <span class="en" data-step-en></span><span class="ar" data-step-ar></span>
+        </span>
+        <span class="progress-track"><span class="progress-fill"></span></span>
+      </div>
+      <div class="lang-switch" role="group" aria-label="Language / اللغة">
+        <button type="button" data-set-lang="ar" lang="ar">عربي</button>
+        <button type="button" data-set-lang="en" lang="en">English</button>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="scene is-active" id="scene-intro" data-step="0" aria-labelledby="title">
+      <h1 id="title" class="heading">
+        <span class="en">Event Attendee Survey</span>
+        <span class="ar">استبيان الحضور</span>
+      </h1>
+      <p class="sub">
+        <span class="en">Thank you for joining us tonight. Two quick questions will help us make our next events even better.</span>
+        <span class="ar">شكراً لحضوركم الليلة. سؤالان سريعان يساعداننا على جعل فعالياتنا القادمة أفضل.</span>
+      </p>
+      <ul class="facts">
+        <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span class="en">Less than a minute</span><span class="ar">أقل من دقيقة</span></li>
+        <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/></svg><span class="en">Anonymous</span><span class="ar">بدون ذكر الاسم</span></li>
+      </ul>
+      <div class="actions">
+        <button type="button" class="btn btn-primary" data-go="scene-q1">
+          <span class="en">Start the survey</span><span class="ar">ابدأ الاستبيان</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Question 1 -->
+    <section class="scene" id="scene-q1" data-step="1" aria-labelledby="q1">
+      <fieldset>
+        <legend id="q1" class="heading heading--q">
+          <span class="en">How would you rate your overall experience at tonight’s event?</span>
+          <span class="ar">كيف تقيّم تجربتك بشكل عام في حفل الليلة؟</span>
+        </legend>
+        <div class="scale">
+          <label class="rate" data-score="5">
+            <input type="radio" name="rating" value="excellent">
+            <span class="signal" aria-hidden="true"><i class=on></i><i class=on></i><i class=on></i><i class=on></i><i class=on></i></span>
+            <span class="label"><span class="en">Excellent</span><span class="ar">ممتازة</span></span>
+            <span class="tick" aria-hidden="true"></span>
+          </label>
+          <label class="rate" data-score="4">
+            <input type="radio" name="rating" value="very_good">
+            <span class="signal" aria-hidden="true"><i class=on></i><i class=on></i><i class=on></i><i class=on></i><i></i></span>
+            <span class="label"><span class="en">Very Good</span><span class="ar">جيدة جداً</span></span>
+            <span class="tick" aria-hidden="true"></span>
+          </label>
+          <label class="rate" data-score="3">
+            <input type="radio" name="rating" value="good">
+            <span class="signal" aria-hidden="true"><i class=on></i><i class=on></i><i class=on></i><i></i><i></i></span>
+            <span class="label"><span class="en">Good</span><span class="ar">جيدة</span></span>
+            <span class="tick" aria-hidden="true"></span>
+          </label>
+          <label class="rate" data-score="2">
+            <input type="radio" name="rating" value="fair">
+            <span class="signal" aria-hidden="true"><i class=on></i><i class=on></i><i></i><i></i><i></i></span>
+            <span class="label"><span class="en">Fair</span><span class="ar">مقبولة</span></span>
+            <span class="tick" aria-hidden="true"></span>
+          </label>
+          <label class="rate" data-score="1">
+            <input type="radio" name="rating" value="poor">
+            <span class="signal" aria-hidden="true"><i class=on></i><i></i><i></i><i></i><i></i></span>
+            <span class="label"><span class="en">Poor</span><span class="ar">ضعيفة</span></span>
+            <span class="tick" aria-hidden="true"></span>
+          </label>
+        </div>
+      </fieldset>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" data-go="scene-intro"><span class="en">Back</span><span class="ar">رجوع</span></button>
+        <button type="button" class="btn btn-primary" data-go="scene-q2" data-needs="rating" disabled><span class="en">Next</span><span class="ar">التالي</span></button>
+      </div>
+    </section>
+
+    <!-- Question 2 -->
+    <section class="scene" id="scene-q2" data-step="2" aria-labelledby="q2">
+      <fieldset>
+        <legend id="q2" class="heading heading--q">
+          <span class="en">What is the ONE thing we could improve to make your experience better at future events?</span>
+          <span class="ar">ما هو الجانب الأهم الذي يمكننا تحسينه لجعل تجربتك أفضل في الفعاليات القادمة؟</span>
+        </legend>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="improve" value="organization">
+            <span class="option-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4.5V3h6v1.5"/><path d="M8.5 10.5l1.5 1.5 3-3M8.5 16h7"/></svg></span>
+            <span class="label"><span class="en">Event Organization</span><span class="ar">تنظيم الفعالية</span></span>
+            <span class="tick" aria-hidden="true"></span>
+          </label>
+          <label class="option">
+            <input type="radio" name="improve" value="venue">
+            <span class="option-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V5a2 2 0 012-2h6a2 2 0 012 2v6"/><path d="M5 11h14v4H5z"/><path d="M6.5 15v6M17.5 15v6"/></svg></span>
+            <span class="label"><span class="en">Venue Facilities &amp; Comfort</span><span class="ar">مرافق المكان والراحة</span></span>
+            <span class="tick" aria-hidden="true"></span>
+          </label>
+          <label class="option">
+            <input type="radio" name="improve" value="sound_lighting">
+            <span class="option-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5v14l-4.5-4.5H4z"/><path d="M15.5 9a4 4 0 010 6M18 6.5a7.5 7.5 0 010 11"/></svg></span>
+            <span class="label"><span class="en">Sound &amp; Lighting</span><span class="ar">الصوت والإضاءة</span></span>
+            <span class="tick" aria-hidden="true"></span>
+          </label>
+          <label class="option">
+            <input type="radio" name="improve" value="program">
+            <span class="option-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0012 0M12 17v4M9 21h6"/></svg></span>
+            <span class="label"><span class="en">Event Program &amp; Entertainment</span><span class="ar">برنامج الفعالية والترفيه</span></span>
+            <span class="tick" aria-hidden="true"></span>
+          </label>
+          <label class="option">
+            <input type="radio" name="improve" value="food">
+            <span class="option-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l-1 7a4 4 0 01-8 0z"/><path d="M12 14v7M8.5 21h7"/></svg></span>
+            <span class="label"><span class="en">Food &amp; Beverage Options</span><span class="ar">خيارات المأكولات والمشروبات</span></span>
+            <span class="tick" aria-hidden="true"></span>
+          </label>
+          <label class="option option--all-good">
+            <input type="radio" name="improve" value="nothing">
+            <span class="option-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0112 7.3 4.3 4.3 0 0119.5 10c0 5.4-7.5 10-7.5 10z"/></svg></span>
+            <span class="label"><span class="en">Nothing – Everything Was Great</span><span class="ar">لا شيء، كل شيء كان رائعاً</span></span>
+            <span class="tick" aria-hidden="true"></span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- bots fill this, people never see it -->
+      <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+      <p class="error" role="alert" hidden>
+        <span class="en">Your answers didn’t send. Check your connection and tap Send again.</span>
+        <span class="ar">لم تُرسل إجاباتك. تحقّق من الاتصال واضغط إرسال مجدداً.</span>
+      </p>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" data-go="scene-q1"><span class="en">Back</span><span class="ar">رجوع</span></button>
+        <button type="submit" class="btn btn-primary" data-needs="improve" disabled><span class="en">Send</span><span class="ar">إرسال</span></button>
+      </div>
+    </section>
+
+    <!-- Thank you -->
+    <section class="scene" id="scene-thanks" data-step="3" aria-labelledby="thanks" tabindex="-1">
+      <div class="done-mark" aria-hidden="true">
+        <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7.5 7.5L38 19"/></svg>
+      </div>
+      <h2 id="thanks" class="heading">
+        <span class="en">Thank you</span>
+        <span class="ar">شكراً لكم</span>
+      </h2>
+      <p class="sub">
+        <span class="en">Your answers are in. Enjoy the rest of the night.</span>
+        <span class="ar">وصلتنا إجاباتكم. استمتعوا ببقية السهرة.</span>
+      </p>
+      <div class="actions actions--center">
+        <button type="button" class="btn btn-ghost" data-restart hidden><span class="en">Next guest</span><span class="ar">الضيف التالي</span></button>
+      </div>
+    </section>
+
+  </form>
+</main>
+
+<script src="assets/survey.js?v=4"></script>
+</body>
+</html>
