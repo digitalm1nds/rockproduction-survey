@@ -6,7 +6,7 @@ window.SURVEY_CONFIG = {
   // Paste your Google Apps Script web app link between the quotes.
   // It looks like: https://script.google.com/macros/s/AKfy.../exec
   // (README.md, step 2, shows where to get it.)
-  endpoint: '',
+  endpoint: 'https://script.google.com/macros/s/AKfycbxzM8ux3K2N2geoUiVum2XjvaJiJ5LhJOK8CycGuqKf0zuuf9BGrVBCd-5aTHDeSQQ0Ew/exec',
 
   // Language the survey opens in: 'ar' (Arabic) or 'en' (English).
   // Guests can switch at the top of the survey; their choice is remembered.

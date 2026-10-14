@@ -22,6 +22,9 @@
 
   --radius-card: 20px;
   --radius: 12px;
+
+  /* banner and survey card share one width, so their edges line up */
+  --page: 880px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -55,7 +58,7 @@ body {
 .banner {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--page);
   margin: 0 auto;
   aspect-ratio: 3 / 1;
   overflow: hidden;
@@ -82,10 +85,10 @@ body {
   padding-inline: 16px;
   padding-block: 16px 48px;
 }
-@media (min-width: 768px) { .shell { padding-inline: 24px; padding-block: 32px 72px; } }
+@media (min-width: 768px) { .shell { padding-inline: 24px; padding-block: 20px 72px; } }
 
 .card {
-  max-width: 720px;
+  max-width: var(--page);
   margin: 0 auto;
   padding: 20px 18px 24px;
   background: var(--surface);
@@ -93,7 +96,8 @@ body {
   border-radius: var(--radius-card);
   box-shadow: 0 24px 60px rgba(0, 0, 0, .45);
 }
-@media (min-width: 768px) { .card { padding: 32px 44px 40px; } }
+@media (min-width: 768px) { .card { padding: 32px 48px 40px; } }
+@media (min-width: 1024px) { .card { padding: 36px 64px 44px; } }
 
 /* Top bar */
 .card-top {
